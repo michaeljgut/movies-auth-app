@@ -22,4 +22,25 @@ Movie.update = (movie, id) => {
   );
 };
 
+Movie.create = movie => {
+  return db.one(
+    `
+      INSERT INTO movies
+      (title, description)
+      VALUES ($1, $2) RETURNING *
+    `,
+    [movie.title, movie.description]
+  );
+};
+
+Movie.destroy = id => {
+  return db.none(
+    `
+      DELETE FROM movies
+      WHERE id = $1
+    `,
+    [id]
+  );
+};
+
 module.exports = Movie;
