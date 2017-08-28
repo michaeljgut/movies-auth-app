@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const moviesRouter = require('./routes/movies-routes');
 app.use('/movies', moviesRouter)
 
+const directorsRouter = require('./routes/directors-routes');
+app.use('/directors', directorsRouter)
+
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
